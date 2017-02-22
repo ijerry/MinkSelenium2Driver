@@ -551,6 +551,20 @@ class Selenium2Driver extends CoreDriver
         return $this->executeJsOnXpath($xpath, 'return {{ELEMENT}}.outerHTML;');
     }
 
+   /**
+    * {@inheritdoc}
+    */
+    public function getBrowserStackSessionId()
+    {
+        $url = $this->getCurrentUrl();
+        $partOfUrl = explode("/",$url);
+        if (isset($partOfUrl[6])) {
+            return $partOfUrl[6];
+        }
+        else
+            return null;
+    }
+    
     /**
      * {@inheritdoc}
      */
